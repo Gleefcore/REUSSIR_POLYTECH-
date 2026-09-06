@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import '@fontsource-variable/lexend';
-import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/jetbrains-mono';
 import './globals.css';
 import { ThemeProvider } from '@/lib/theme';
 import Navbar from '@/components/layout/Navbar';

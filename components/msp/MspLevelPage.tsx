@@ -162,7 +162,7 @@ function UnitCard({
 
         <div className="relative flex items-start justify-between gap-4">
           <div>
-            <span className="font-display text-[11px] font-bold uppercase tracking-[0.3em] text-gold-600 dark:text-gold-400">
+            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-gold-600 dark:text-gold-400">
               Unité {String(index + 1).padStart(2, '0')}
             </span>
             <h3 className="font-display mt-1.5 text-xl font-bold text-navy-900 dark:text-white">{u.name}</h3>

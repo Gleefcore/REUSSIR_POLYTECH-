@@ -23,7 +23,7 @@ export default function Logo({ compact = false }: { compact?: boolean }) {
         </svg>
       </span>
       {!compact && (
-        <span className="font-grotesk flex flex-col leading-none">
+        <span className="font-display flex flex-col leading-none">
           <span className="text-[15px] font-bold tracking-[0.22em] text-navy-900 dark:text-white">
             RÉUSSIR
           </span>

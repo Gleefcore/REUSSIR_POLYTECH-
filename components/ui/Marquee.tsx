@@ -14,7 +14,7 @@ export default function Marquee() {
     <div key={key} className="flex shrink-0 items-center">
       {WORDS.map((w) => (
         <span key={`${key}-${w}`} className="flex items-center">
-          <span className="font-display px-6 text-sm font-semibold tracking-[0.35em] text-navy-500/70 dark:text-navy-200/50">
+          <span className="font-grotesk px-6 text-sm font-bold tracking-[0.35em] text-navy-500/70 dark:text-navy-200/50">
             {w}
           </span>
           <span className="h-1.5 w-1.5 rotate-45 bg-gold-500/70" />

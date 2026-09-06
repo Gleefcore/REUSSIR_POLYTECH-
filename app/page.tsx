@@ -93,7 +93,7 @@ export default function HomePage() {
             transition={{ duration: 0.9, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             className="holo-word animate-float"
           >
-            <h1 className="font-display text-[clamp(3.2rem,11vw,7.5rem)] font-bold leading-[0.95] tracking-tight">
+            <h1 className="font-grotesk text-[clamp(3.4rem,11vw,8rem)] font-bold leading-[0.92] tracking-tight">
               <span className="block text-navy-950 text-3d-navy dark:text-white">RÉUSSIR</span>
               <span className="text-gradient-gold block">POLYTECH</span>
             </h1>
@@ -103,7 +103,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-8 max-w-2xl text-lg font-medium leading-relaxed text-navy-700 md:text-xl dark:text-slate-300"
+            className="mt-8 max-w-2xl text-lg font-semibold leading-relaxed text-navy-700 md:text-xl dark:text-slate-300"
           >
             « Réussir ensemble, <span className="text-gold-600 dark:text-gold-400">construire l’excellence</span>. »
           </motion.p>
@@ -138,7 +138,7 @@ export default function HomePage() {
               { value: 100, suffix: '%', label: 'Esprit d’entraide' },
             ].map((s) => (
               <div key={s.label} className="bg-white/80 px-4 py-5 backdrop-blur dark:bg-navy-950/80">
-                <div className="font-display text-2xl font-bold text-navy-900 dark:text-white">
+                <div className="font-grotesk text-2xl font-bold text-navy-900 dark:text-white">
                   <Counter to={s.value} suffix={s.suffix} />
                 </div>
                 <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-navy-500 dark:text-slate-400">

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import '@fontsource-variable/inter';
+import '@fontsource-variable/lexend';
 import '@fontsource-variable/space-grotesk';
 import './globals.css';
 import { ThemeProvider } from '@/lib/theme';

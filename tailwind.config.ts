@@ -37,8 +37,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-grotesk)', 'var(--font-inter)', 'sans-serif'],
+        sans: ['var(--font-lexend)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-lexend)', 'system-ui', 'sans-serif'],
+        grotesk: ['var(--font-grotesk)', 'sans-serif'],
       },
       keyframes: {
         float: {

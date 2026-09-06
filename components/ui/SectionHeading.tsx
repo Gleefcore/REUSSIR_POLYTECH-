@@ -19,7 +19,7 @@ export default function SectionHeading({
         <span className="h-1.5 w-1.5 rounded-full bg-gold-500" />
         {eyebrow}
       </span>
-      <h2 className="font-display text-3xl font-bold leading-tight tracking-tight text-navy-900 sm:text-4xl md:text-[2.75rem] dark:text-white">
+      <h2 className="font-display text-3xl leading-[1.12] tracking-tight text-navy-900 text-balance sm:text-4xl md:text-[2.75rem] dark:text-white">
         {title}
       </h2>
       {sub ? (

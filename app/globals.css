@@ -4,7 +4,7 @@
 
 :root {
   --font-grotesk: 'Space Grotesk Variable', 'Space Grotesk', sans-serif;
-  --font-inter: 'Inter Variable', 'Inter', sans-serif;
+  --font-lexend: 'Lexend Variable', 'Lexend', sans-serif;
 }
 
 html {
@@ -13,8 +13,11 @@ html {
 
 body {
   @apply bg-white text-navy-900 antialiased dark:bg-navy-950 dark:text-slate-200;
-  font-family: var(--font-inter);
+  font-family: var(--font-lexend);
+  font-size: 16px;
+  line-height: 1.65;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
@@ -37,8 +40,19 @@ body {
 }
 
 /* ── Typography helpers ────────────────────────────── */
+/* Lexend = police principale : moderne, lisible, puissante en gras.
+   Tous les titres .font-display reçoivent automatiquement Lexend 800
+   (plus gras que la classe font-bold des utilitaires). */
 .font-display {
+  font-family: var(--font-lexend);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Space Grotesk = wordmark, chiffres et éléments techniques */
+.font-grotesk {
   font-family: var(--font-grotesk);
+  letter-spacing: -0.01em;
 }
 
 .text-gradient-gold {
@@ -77,11 +91,11 @@ body {
 
 /* ── Buttons ───────────────────────────────────────── */
 .btn-gold {
-  @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-gold-400 via-gold-500 to-gold-600 px-5 py-3 text-sm font-semibold text-navy-950 shadow-[0_8px_28px_rgba(245,165,36,0.35)] transition-all duration-300 hover:shadow-[0_10px_36px_rgba(245,165,36,0.5)] hover:brightness-105 active:scale-[0.98];
+  @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-gold-400 via-gold-500 to-gold-600 px-5 py-3 text-sm font-bold text-navy-950 shadow-[0_8px_28px_rgba(245,165,36,0.35)] transition-all duration-300 hover:shadow-[0_10px_36px_rgba(245,165,36,0.5)] hover:brightness-105 active:scale-[0.98];
 }
 
 .btn-outline {
-  @apply inline-flex items-center justify-center gap-2 rounded-xl border border-navy-900/20 bg-white/50 px-5 py-3 text-sm font-semibold text-navy-800 backdrop-blur transition-all duration-300 hover:border-gold-500/60 hover:text-navy-950 hover:shadow-[0_8px_28px_rgba(245,165,36,0.18)] active:scale-[0.98] dark:border-white/20 dark:bg-white/[0.04] dark:text-slate-100 dark:hover:border-gold-500/50 dark:hover:text-gold-200;
+  @apply inline-flex items-center justify-center gap-2 rounded-xl border border-navy-900/20 bg-white/50 px-5 py-3 text-sm font-bold text-navy-800 backdrop-blur transition-all duration-300 hover:border-gold-500/60 hover:text-navy-950 hover:shadow-[0_8px_28px_rgba(245,165,36,0.18)] active:scale-[0.98] dark:border-white/20 dark:bg-white/[0.04] dark:text-slate-100 dark:hover:border-gold-500/50 dark:hover:text-gold-200;
 }
 
 .btn-ghost {
@@ -94,16 +108,16 @@ body {
 }
 
 .field-label {
-  @apply mb-1.5 block text-xs font-semibold uppercase tracking-[0.14em] text-navy-500 dark:text-slate-400;
+  @apply mb-1.5 block text-xs font-bold uppercase tracking-[0.14em] text-navy-500 dark:text-slate-400;
 }
 
 /* ── Badges ────────────────────────────────────────── */
 .badge-gold {
-  @apply inline-flex items-center gap-1.5 rounded-full border border-gold-500/40 bg-gold-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-gold-700 dark:text-gold-300;
+  @apply inline-flex items-center gap-1.5 rounded-full border border-gold-500/40 bg-gold-500/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-gold-700 dark:text-gold-300;
 }
 
 .badge-navy {
-  @apply inline-flex items-center gap-1.5 rounded-full border border-navy-300/40 bg-navy-500/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-navy-600 dark:border-navy-500/40 dark:bg-navy-800/60 dark:text-navy-200;
+  @apply inline-flex items-center gap-1.5 rounded-full border border-navy-300/40 bg-navy-500/5 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-navy-600 dark:border-navy-500/40 dark:bg-navy-800/60 dark:text-navy-200;
 }
 
 /* ── Backgrounds ───────────────────────────────────── */

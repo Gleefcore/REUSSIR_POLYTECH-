@@ -58,7 +58,7 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className={`relative rounded-lg px-3.5 py-2 text-[13.5px] font-medium transition-colors ${
+              className={`relative rounded-lg px-3.5 py-2 text-[13.5px] font-bold transition-colors ${
                 isActive(l.href)
                   ? 'text-navy-950 dark:text-gold-300'
                   : 'text-navy-600 hover:text-navy-950 dark:text-slate-300 dark:hover:text-white'
@@ -143,7 +143,7 @@ export default function Navbar() {
                   <Link
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className={`block rounded-xl px-4 py-3 text-sm font-medium ${
+                    className={`block rounded-xl px-4 py-3 text-sm font-semibold ${
                       isActive(l.href)
                         ? 'bg-gold-500/10 text-gold-700 dark:text-gold-300'
                         : 'text-navy-700 dark:text-slate-300'

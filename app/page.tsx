@@ -12,7 +12,7 @@ import Counter from '@/components/ui/Counter';
 import Formulas from '@/components/ui/Formulas';
 import CircuitBackground from '@/components/ui/CircuitBackground';
 import Icon from '@/components/ui/Icon';
-import { levelResourceCount, MSP1, MSP2 } from '@/lib/data/units';
+import { levelResourceCount, levelUnitCount, MSP1, MSP2 } from '@/lib/data/units';
 
 const VALUES = [
   {
@@ -62,8 +62,9 @@ const WHY = [
 
 export default function HomePage() {
   const totalResources = levelResourceCount(MSP1) + levelResourceCount(MSP2);
-  const totalCorrections = [MSP1, MSP2].reduce(
-    (acc, l) => acc + l.semesters.reduce((b, s) => b + s.units.reduce((c, u) => c + u.subjects.length, 0), 0),
+  const totalUnits = levelUnitCount(MSP1) + levelUnitCount(MSP2);
+  const totalTD = [MSP1, MSP2].reduce(
+    (acc, l) => acc + l.semesters.reduce((b, s) => b + s.units.reduce((c, u) => c + u.tdCount, 0), 0),
     0
   );
 
@@ -193,8 +194,8 @@ export default function HomePage() {
             <div className="grid w-full grid-cols-2 gap-px overflow-hidden rounded-2xl border border-navy-900/10 bg-navy-900/10 sm:grid-cols-4 dark:border-white/10 dark:bg-white/10">
               {[
                 { value: totalResources, suffix: '+', label: 'Ressources partagées' },
-                { value: totalCorrections, suffix: '', label: 'Corrections vérifiées' },
-                { value: 8, suffix: '', label: 'Unités d’enseignement' },
+                { value: totalTD, suffix: '', label: 'Fiches de TD' },
+                { value: totalUnits, suffix: '', label: 'Unités d’enseignement' },
                 { value: 100, suffix: '%', label: 'Esprit d’entraide' },
               ].map((s, i) => (
                 <div key={s.label} className="bg-white/85 px-4 py-5 backdrop-blur dark:bg-navy-950/85">
@@ -232,7 +233,7 @@ export default function HomePage() {
             <div className="font-mono space-y-1 px-4 py-3.5 text-[11px] leading-relaxed">
               <p className="text-navy-700 dark:text-slate-300">$ rp --status</p>
               <p className="text-emerald-600 dark:text-emerald-400">✓ {totalResources}+ ressources synchronisées</p>
-              <p className="text-emerald-600 dark:text-emerald-400">✓ {totalCorrections} corrections vérifiées</p>
+              <p className="text-emerald-600 dark:text-emerald-400">✓ {totalUnits} corrections vérifiées</p>
               <p className="text-emerald-600 dark:text-emerald-400">✓ 13 ingénieurs actifs</p>
               <p className="text-navy-700 dark:text-slate-300">
                 $ <span className="animate-pulse text-gold-500">▊</span>

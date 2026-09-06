@@ -227,7 +227,7 @@ export default function DashboardPage() {
                             <div key={u.id} className="card-premium p-5">
                               <div className="flex items-start justify-between gap-3">
                                 <div>
-                                  <h4 className="font-display text-base font-bold text-navy-900 dark:text-white">{u.name}</h4>
+                                  <h4 className="font-display text-base text-navy-900 dark:text-white">{u.name}</h4>
                                   <p className="mt-1 text-xs text-navy-500 dark:text-slate-400">{u.description}</p>
                                 </div>
                                 <span className="shrink-0 rounded-full border border-gold-500/40 bg-gold-500/10 px-2.5 py-1 text-[10.5px] font-bold text-gold-700 dark:text-gold-300">
@@ -235,21 +235,25 @@ export default function DashboardPage() {
                                 </span>
                               </div>
                               <div className="mt-4 flex flex-wrap gap-2">
-                                {u.subjects.slice(0, 2).map((s) => (
-                                  <button
-                                    key={s.id}
-                                    onClick={() => quickDownload(`Fiches de TD (${s.tdCount})`, 'TD', sem.name, u.name, s.name, s.tdCount)}
-                                    className="inline-flex items-center gap-1.5 rounded-lg border border-navy-900/10 px-3 py-1.5 text-[11.5px] font-semibold text-navy-700 transition hover:border-gold-500/50 hover:text-gold-600 dark:border-white/10 dark:text-slate-300 dark:hover:text-gold-300"
-                                  >
-                                    <Icon name="download" className="h-3.5 w-3.5" />
-                                    TD · {s.name}
-                                  </button>
-                                ))}
+                                <button
+                                  onClick={() => quickDownload(`Fiches de TD (${u.tdCount})`, 'TD', sem.name, u.name, u.name, u.tdCount)}
+                                  className="inline-flex items-center gap-1.5 rounded-lg border border-navy-900/10 px-3 py-1.5 text-[11.5px] font-semibold text-navy-700 transition hover:border-gold-500/50 hover:text-gold-600 dark:border-white/10 dark:text-slate-300 dark:hover:text-gold-300"
+                                >
+                                  <Icon name="download" className="h-3.5 w-3.5" />
+                                  Fiches TD · {u.tdCount}
+                                </button>
+                                <button
+                                  onClick={() => quickDownload(`Épreuve(s) (${u.examCount})`, 'Examen', sem.name, u.name, u.name, u.examCount)}
+                                  className="inline-flex items-center gap-1.5 rounded-lg border border-navy-900/10 px-3 py-1.5 text-[11.5px] font-semibold text-navy-700 transition hover:border-gold-500/50 hover:text-gold-600 dark:border-white/10 dark:text-slate-300 dark:hover:text-gold-300"
+                                >
+                                  <Icon name="download" className="h-3.5 w-3.5" />
+                                  Examens · {u.examCount}
+                                </button>
                                 <Link
                                   href={levelData.code === 'MSP1' ? '/msp1' : '/msp2'}
                                   className="inline-flex items-center gap-1.5 rounded-lg bg-navy-800 px-3 py-1.5 text-[11.5px] font-semibold text-white transition hover:bg-gold-500 hover:text-navy-950 dark:bg-navy-700 dark:hover:bg-gold-500"
                                 >
-                                  Toute l’unité
+                                  Corrections
                                   <Icon name="arrow-right" className="h-3.5 w-3.5" />
                                 </Link>
                               </div>

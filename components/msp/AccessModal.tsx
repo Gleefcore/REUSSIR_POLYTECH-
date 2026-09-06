@@ -107,7 +107,12 @@ export default function AccessModal({
                   Demander l’accès à la correction
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-600 dark:text-slate-400">
-                  <strong className="text-navy-800 dark:text-slate-200">{subject}</strong> — {level} · {semester} · {unit}
+                  <strong className="text-navy-800 dark:text-slate-200">{subject}</strong>
+                  {level && (
+                    <>
+                      {' '}— {[level, semester, unit].filter((c, i, arr) => c && arr.indexOf(c) === i).join(' · ')}
+                    </>
+                  )}
                   <br />
                   Renseignez vos informations puis envoyez la demande directement sur le WhatsApp de l’équipe.
                 </p>

@@ -1,18 +1,12 @@
 export type CorrectionState = 'free' | 'protected';
 
-export interface Subject {
-  id: string;
-  name: string;
-  tdCount: number;
-  examCount: number;
-  correction: CorrectionState;
-}
-
 export interface Unit {
   id: string;
   name: string;
   description: string;
-  subjects: Subject[];
+  tdCount: number;
+  examCount: number;
+  correction: CorrectionState;
 }
 
 export interface Semester {
@@ -28,11 +22,7 @@ export interface LevelData {
   semesters: Semester[];
 }
 
-export const unitResourceCount = (u: Unit): number =>
-  u.subjects.reduce(
-    (acc, s) => acc + s.tdCount + s.examCount + 1,
-    0
-  );
+export const unitResourceCount = (u: Unit): number => u.tdCount + u.examCount + 1;
 
 export const levelResourceCount = (l: LevelData): number =>
   l.semesters.reduce(
@@ -40,59 +30,98 @@ export const levelResourceCount = (l: LevelData): number =>
     0
   );
 
+export const levelUnitCount = (l: LevelData): number =>
+  l.semesters.reduce((acc, sem) => acc + sem.units.length, 0);
+
 export const MSP1: LevelData = {
   code: 'MSP1',
-  title: 'MSP1 — Première année de Master Spécialisé Professionnel',
+  title: 'MSP1 — Niveau 1',
   tagline:
-    'Consolider les fondamentaux de l’ingénieur et maîtriser les méthodes qui font la différence.',
+    'Le socle de l’ingénieur : analyse, algèbre, physique, informatique et dessin technique, semestre après semestre.',
   semesters: [
     {
       id: 'msp1-s1',
       name: 'Semestre 1',
       units: [
         {
-          id: 'msp1-u1',
-          name: 'Mathématiques Appliquées',
-          description:
-            'Le socle quantitatif de l’ingénieur : algèbre, probabilités et calcul numérique.',
-          subjects: [
-            { id: 'msp1-u1-s1', name: 'Algèbre linéaire', tdCount: 4, examCount: 3, correction: 'free' },
-            { id: 'msp1-u1-s2', name: 'Probabilités & Statistiques', tdCount: 3, examCount: 2, correction: 'protected' },
-            { id: 'msp1-u1-s3', name: 'Analyse numérique', tdCount: 3, examCount: 2, correction: 'free' },
-          ],
+          id: 'msp1-s1-01',
+          name: 'Analyse réelle 1',
+          description: 'Fonctions, suites, séries : bâtir la rigueur de l’analyse mathématique.',
+          tdCount: 4,
+          examCount: 3,
+          correction: 'free',
         },
         {
-          id: 'msp1-u2',
-          name: 'Mécanique & Structures',
-          description:
-            'Dimensionner, calculer, vérifier : la mécanique appliquée au cœur de l’ingénierie.',
-          subjects: [
-            { id: 'msp1-u2-s1', name: 'Résistance des matériaux', tdCount: 5, examCount: 3, correction: 'free' },
-            { id: 'msp1-u2-s2', name: 'Mécanique des fluides', tdCount: 4, examCount: 2, correction: 'protected' },
-            { id: 'msp1-u2-s3', name: 'Géotechnique & Mécanique des sols', tdCount: 3, examCount: 1, correction: 'free' },
-          ],
+          id: 'msp1-s1-02',
+          name: 'Algèbre Générale',
+          description: 'Groupes, anneaux, corps : les structures abstraites au cœur des mathématiques.',
+          tdCount: 4,
+          examCount: 3,
+          correction: 'protected',
         },
         {
-          id: 'msp1-u3',
-          name: 'Électricité & Électronique',
-          description:
-            'Du circuit élémentaire à la machine électrique : maîtriser l’énergie.',
-          subjects: [
-            { id: 'msp1-u3-s1', name: 'Circuits électriques', tdCount: 4, examCount: 3, correction: 'free' },
-            { id: 'msp1-u3-s2', name: 'Électronique analogique & numérique', tdCount: 3, examCount: 2, correction: 'protected' },
-            { id: 'msp1-u3-s3', name: 'Machines électriques', tdCount: 4, examCount: 2, correction: 'free' },
-          ],
+          id: 'msp1-s1-03',
+          name: 'Électromagnétisme 1',
+          description: 'Électrostatique et magnétostatique : champs, forces et lois fondamentales.',
+          tdCount: 3,
+          examCount: 2,
+          correction: 'free',
         },
         {
-          id: 'msp1-u4',
-          name: 'Informatique & Systèmes',
-          description:
-            'Coder, structurer, connecter : les fondations numériques de l’ingénieur.',
-          subjects: [
-            { id: 'msp1-u4-s1', name: 'Algorithmique & programmation', tdCount: 5, examCount: 4, correction: 'free' },
-            { id: 'msp1-u4-s2', name: 'Bases de données', tdCount: 3, examCount: 2, correction: 'protected' },
-            { id: 'msp1-u4-s3', name: 'Réseaux informatiques', tdCount: 3, examCount: 2, correction: 'free' },
-          ],
+          id: 'msp1-s1-04',
+          name: 'Mécanique du point',
+          description: 'Lois de Newton, travail et énergie : le mouvement de la masse ponctuelle.',
+          tdCount: 4,
+          examCount: 2,
+          correction: 'free',
+        },
+        {
+          id: 'msp1-s1-05',
+          name: 'TP Physique',
+          description: 'Pratique au laboratoire : mesures, incertitudes et démarche expérimentale.',
+          tdCount: 3,
+          examCount: 1,
+          correction: 'free',
+        },
+        {
+          id: 'msp1-s1-06',
+          name: 'Informatique 1',
+          description: 'Fondamentaux de la programmation : logique, algorithmique, premiers programmes.',
+          tdCount: 5,
+          examCount: 3,
+          correction: 'free',
+        },
+        {
+          id: 'msp1-s1-07',
+          name: 'Éléments de Chimie',
+          description: 'La matière et ses transformations : le socle scientifique de l’ingénieur.',
+          tdCount: 3,
+          examCount: 2,
+          correction: 'protected',
+        },
+        {
+          id: 'msp1-s1-08',
+          name: 'Langue (Anglais/Français)',
+          description: 'Communication technique en français et en anglais : les langues du travail d’ingénieur.',
+          tdCount: 2,
+          examCount: 2,
+          correction: 'free',
+        },
+        {
+          id: 'msp1-s1-09',
+          name: 'Dessin technique',
+          description: 'Lire et produire des plans : le langage graphique de l’ingénieur.',
+          tdCount: 4,
+          examCount: 2,
+          correction: 'free',
+        },
+        {
+          id: 'msp1-s1-10',
+          name: 'Comportement et Sport',
+          description: 'Discipline personnelle et condition physique : les fondations de la performance.',
+          tdCount: 2,
+          examCount: 1,
+          correction: 'free',
         },
       ],
     },
@@ -101,47 +130,76 @@ export const MSP1: LevelData = {
       name: 'Semestre 2',
       units: [
         {
-          id: 'msp1-u5',
-          name: 'Thermique & Procédés',
-          description:
-            'Transformations d’énergie et conception de procédés industriels.',
-          subjects: [
-            { id: 'msp1-u5-s1', name: 'Thermodynamique appliquée', tdCount: 4, examCount: 2, correction: 'free' },
-            { id: 'msp1-u5-s2', name: 'Phénomènes de transferts', tdCount: 3, examCount: 2, correction: 'protected' },
-            { id: 'msp1-u5-s3', name: 'Conception de procédés', tdCount: 3, examCount: 1, correction: 'free' },
-          ],
+          id: 'msp1-s2-01',
+          name: 'Analyse réelle 2',
+          description: 'Continuité, dérivabilité, intégration : l’analyse au sommet de sa maturité.',
+          tdCount: 4,
+          examCount: 3,
+          correction: 'free',
         },
         {
-          id: 'msp1-u6',
-          name: 'Gestion de Production',
-          description:
-            'Piloter les systèmes de production avec méthode, coût et performance.',
-          subjects: [
-            { id: 'msp1-u6-s1', name: 'Organisation & pilotage de la production', tdCount: 4, examCount: 2, correction: 'free' },
-            { id: 'msp1-u6-s2', name: 'Économie & gestion industrielle', tdCount: 3, examCount: 2, correction: 'protected' },
-            { id: 'msp1-u6-s3', name: 'Qualité & fiabilité', tdCount: 2, examCount: 1, correction: 'free' },
-          ],
+          id: 'msp1-s2-02',
+          name: 'Géométrie euclidienne et affine',
+          description: 'Structures de l’espace : vecteurs, transformations, objets géométriques.',
+          tdCount: 3,
+          examCount: 2,
+          correction: 'protected',
         },
         {
-          id: 'msp1-u7',
-          name: 'Signaux & Automatique',
-          description:
-            'Mesurer, traiter, commander : la chaîne automatique complète.',
-          subjects: [
-            { id: 'msp1-u7-s1', name: 'Traitement du signal', tdCount: 4, examCount: 3, correction: 'free' },
-            { id: 'msp1-u7-s2', name: 'Automatique & asservissements', tdCount: 3, examCount: 2, correction: 'protected' },
-            { id: 'msp1-u7-s3', name: 'Instrumentation & métrologie', tdCount: 3, examCount: 1, correction: 'free' },
-          ],
+          id: 'msp1-s2-03',
+          name: 'Algèbre linéaire',
+          description: 'Matrices, systèmes, espaces vectoriels : l’outil indispensable de l’ingénieur.',
+          tdCount: 4,
+          examCount: 3,
+          correction: 'free',
         },
         {
-          id: 'msp1-u8',
-          name: 'Méthodologie Scientifique',
-          description:
-            'Conduire une démarche de recherche rigoureuse, documentée et reproductible.',
-          subjects: [
-            { id: 'msp1-u8-s1', name: 'Recherche documentaire & veille', tdCount: 3, examCount: 1, correction: 'free' },
-            { id: 'msp1-u8-s2', name: 'Méthodologie de PFE', tdCount: 2, examCount: 1, correction: 'protected' },
-          ],
+          id: 'msp1-s2-04',
+          name: 'Électromagnétisme 2',
+          description: 'Induction et ondes électromagnétiques : de Faraday à Maxwell.',
+          tdCount: 4,
+          examCount: 2,
+          correction: 'free',
+        },
+        {
+          id: 'msp1-s2-05',
+          name: 'Technologie et sciences des matériaux',
+          description: 'Propriétés mécaniques, électriques et optiques des matériaux et leur choix.',
+          tdCount: 3,
+          examCount: 1,
+          correction: 'free',
+        },
+        {
+          id: 'msp1-s2-06',
+          name: 'Informatique 2',
+          description: 'Programmation orientée objet et structures de données.',
+          tdCount: 4,
+          examCount: 3,
+          correction: 'protected',
+        },
+        {
+          id: 'msp1-s2-07',
+          name: 'Langue (Anglais/Français)',
+          description: 'Rédaction technique et expression orale dans les deux langues du travail.',
+          tdCount: 2,
+          examCount: 2,
+          correction: 'free',
+        },
+        {
+          id: 'msp1-s2-08',
+          name: 'Dessin technique',
+          description: 'Dessin approfondi : projections, coupes, tolérances et normalisation.',
+          tdCount: 4,
+          examCount: 2,
+          correction: 'free',
+        },
+        {
+          id: 'msp1-s2-09',
+          name: 'Comportement et Sport',
+          description: 'Esprit d’équipe et condition physique : le complément du travail académique.',
+          tdCount: 2,
+          examCount: 1,
+          correction: 'free',
         },
       ],
     },
@@ -150,57 +208,77 @@ export const MSP1: LevelData = {
 
 export const MSP2: LevelData = {
   code: 'MSP2',
-  title: 'MSP2 — Deuxième année de Master Spécialisé Professionnel',
+  title: 'MSP2 — Niveau 2',
   tagline:
-    'Passer à l’expert : modélisation avancée, data, leadership et projet de fin d’études.',
+    'La montée en profondeur : algèbre avancée, probabilités, mécanique des solides, électricité et informatique appliquée.',
   semesters: [
     {
       id: 'msp2-s1',
       name: 'Semestre 1',
       units: [
         {
-          id: 'msp2-u9',
-          name: 'Modélisation Avancée',
-          description:
-            'Des modèles mathématiques et numériques de niveau expert.',
-          subjects: [
-            { id: 'msp2-u9-s1', name: 'Optimisation avancée', tdCount: 4, examCount: 2, correction: 'free' },
-            { id: 'msp2-u9-s2', name: 'Éléments finis & simulation', tdCount: 3, examCount: 2, correction: 'protected' },
-            { id: 'msp2-u9-s3', name: 'Calcul scientifique', tdCount: 3, examCount: 2, correction: 'free' },
-          ],
+          id: 'msp2-s1-01',
+          name: 'Algèbre multilinéaire',
+          description: 'Tenseurs, formes, dualité : l’algèbre linéaire vue sous un angle avancé.',
+          tdCount: 3,
+          examCount: 2,
+          correction: 'free',
         },
         {
-          id: 'msp2-u10',
-          name: 'Électronique Embarquée',
-          description:
-            'Concevoir et programmer des systèmes intelligents et connectés.',
-          subjects: [
-            { id: 'msp2-u10-s1', name: 'Microcontrôleurs & systèmes embarqués', tdCount: 4, examCount: 3, correction: 'free' },
-            { id: 'msp2-u10-s2', name: 'Automatisation industrielle', tdCount: 3, examCount: 2, correction: 'protected' },
-            { id: 'msp2-u10-s3', name: 'IoT & systèmes connectés', tdCount: 3, examCount: 1, correction: 'free' },
-          ],
+          id: 'msp2-s1-02',
+          name: 'Séries intégrales',
+          description: 'Intégrales impropres, paramétriques : convergence et estimations.',
+          tdCount: 4,
+          examCount: 3,
+          correction: 'protected',
         },
         {
-          id: 'msp2-u11',
-          name: 'Data Science & IA',
-          description:
-            'Extraire la valeur des données et automatiser l’intelligence.',
-          subjects: [
-            { id: 'msp2-u11-s1', name: 'Machine learning', tdCount: 4, examCount: 3, correction: 'free' },
-            { id: 'msp2-u11-s2', name: 'Analyse & visualisation de données', tdCount: 3, examCount: 2, correction: 'protected' },
-            { id: 'msp2-u11-s3', name: 'Deep learning', tdCount: 2, examCount: 1, correction: 'free' },
-          ],
+          id: 'msp2-s1-03',
+          name: 'Probabilités et statistiques',
+          description: 'Variables aléatoires, lois, estimation : quantifier l’aléatoire.',
+          tdCount: 4,
+          examCount: 3,
+          correction: 'free',
         },
         {
-          id: 'msp2-u12',
-          name: 'Entrepreneuriat & Innovation',
-          description:
-            'Transformer une idée d’ingénieur en projet viable et finançable.',
-          subjects: [
-            { id: 'msp2-u12-s1', name: 'Business plan & finance de projet', tdCount: 3, examCount: 2, correction: 'free' },
-            { id: 'msp2-u12-s2', name: 'Gestion de l’innovation', tdCount: 2, examCount: 1, correction: 'protected' },
-            { id: 'msp2-u12-s3', name: 'Propriété intellectuelle', tdCount: 2, examCount: 1, correction: 'free' },
-          ],
+          id: 'msp2-s1-04',
+          name: 'Mécanique des solides',
+          description: 'Solides rigides et déformables : équilibre, effort, déformation.',
+          tdCount: 4,
+          examCount: 2,
+          correction: 'free',
+        },
+        {
+          id: 'msp2-s1-05',
+          name: 'Électrocinétique',
+          description: 'Circuits en régime permanent, courant alternatif, énergie et puissance.',
+          tdCount: 3,
+          examCount: 2,
+          correction: 'protected',
+        },
+        {
+          id: 'msp2-s1-06',
+          name: 'TP Physique',
+          description: 'Expériences avancées : instruments, protocoles et rapports de laboratoire.',
+          tdCount: 3,
+          examCount: 1,
+          correction: 'free',
+        },
+        {
+          id: 'msp2-s1-07',
+          name: 'Informatique 3',
+          description: 'Programmation structurée avancée et premiers projets de taille réelle.',
+          tdCount: 4,
+          examCount: 3,
+          correction: 'free',
+        },
+        {
+          id: 'msp2-s1-08',
+          name: 'Langue (Anglais/Français)',
+          description: 'Textes scientifiques, résumés et présentations techniques bilingues.',
+          tdCount: 2,
+          examCount: 2,
+          correction: 'free',
         },
       ],
     },
@@ -209,48 +287,68 @@ export const MSP2: LevelData = {
       name: 'Semestre 2',
       units: [
         {
-          id: 'msp2-u13',
-          name: 'Projet de Fin d’Études',
-          description:
-            'Le couronnement du parcours : recherche, réalisation et soutenance.',
-          subjects: [
-            { id: 'msp2-u13-s1', name: 'Encadrement & suivi de PFE', tdCount: 3, examCount: 1, correction: 'free' },
-            { id: 'msp2-u13-s2', name: 'Rédaction scientifique', tdCount: 4, examCount: 2, correction: 'protected' },
-            { id: 'msp2-u13-s3', name: 'Préparation à la soutenance', tdCount: 3, examCount: 2, correction: 'free' },
-          ],
+          id: 'msp2-s2-01',
+          name: 'Analyse dans les espaces vectoriels de dimensions finies',
+          description: 'Normes, topologie et théorèmes avancés de l’analyse en dimension finie.',
+          tdCount: 3,
+          examCount: 2,
+          correction: 'free',
         },
         {
-          id: 'msp2-u14',
-          name: 'Pilotage Avancé de Projets',
-          description:
-            'Gouverner des projets complexes, multi-acteurs, multi-contraintes.',
-          subjects: [
-            { id: 'msp2-u14-s1', name: 'Gouvernance & gestion des risques', tdCount: 3, examCount: 2, correction: 'free' },
-            { id: 'msp2-u14-s2', name: 'Lean management', tdCount: 3, examCount: 1, correction: 'protected' },
-            { id: 'msp2-u14-s3', name: 'Conduite du changement', tdCount: 2, examCount: 1, correction: 'free' },
-          ],
+          id: 'msp2-s2-02',
+          name: 'Analyse numérique',
+          description: 'Méthodes numériques : racines, interpolation, intégration et équations différentielles.',
+          tdCount: 4,
+          examCount: 3,
+          correction: 'protected',
         },
         {
-          id: 'msp2-u15',
-          name: 'Communication & Leadership',
-          description:
-            'Influencer, fédérer et présenter avec impact.',
-          subjects: [
-            { id: 'msp2-u15-s1', name: 'Communication technique', tdCount: 3, examCount: 2, correction: 'free' },
-            { id: 'msp2-u15-s2', name: 'Négociation & management', tdCount: 2, examCount: 1, correction: 'protected' },
-            { id: 'msp2-u15-s3', name: 'Prise de parole publique', tdCount: 3, examCount: 2, correction: 'free' },
-          ],
+          id: 'msp2-s2-03',
+          name: 'Circuits électriques et électroniques',
+          description: 'Circuits analogiques et numériques : conception, dimensionnement et analyse.',
+          tdCount: 4,
+          examCount: 3,
+          correction: 'free',
         },
         {
-          id: 'msp2-u16',
-          name: 'Synthèse Professionnelle',
-          description:
-            'Bâtir son parcours et affirmer son identité professionnelle.',
-          subjects: [
-            { id: 'msp2-u16-s1', name: 'Portfolio & CV d’ingénieur', tdCount: 3, examCount: 1, correction: 'free' },
-            { id: 'msp2-u16-s2', name: 'Préparation aux entretiens', tdCount: 3, examCount: 2, correction: 'protected' },
-            { id: 'msp2-u16-s3', name: 'Réseau & marque personnelle', tdCount: 2, examCount: 1, correction: 'free' },
-          ],
+          id: 'msp2-s2-04',
+          name: 'Optique géométrique et ondulatoire',
+          description: 'Systèmes optiques, interférence, diffraction : la double nature de la lumière.',
+          tdCount: 3,
+          examCount: 2,
+          correction: 'free',
+        },
+        {
+          id: 'msp2-s2-05',
+          name: 'Thermodynamique',
+          description: 'Énergie, chaleur, transformations : les lois qui gouvernent les systèmes physiques.',
+          tdCount: 4,
+          examCount: 2,
+          correction: 'free',
+        },
+        {
+          id: 'msp2-s2-06',
+          name: 'Statique',
+          description: 'Forces, équilibres et réactions : comprendre avant de calculer les structures.',
+          tdCount: 3,
+          examCount: 2,
+          correction: 'protected',
+        },
+        {
+          id: 'msp2-s2-07',
+          name: 'Informatique 4',
+          description: 'Projets avancés : architecture, qualité du code et documentation technique.',
+          tdCount: 4,
+          examCount: 3,
+          correction: 'free',
+        },
+        {
+          id: 'msp2-s2-08',
+          name: 'Langue (Anglais/Français)',
+          description: 'Expression professionnelle : rapports, soutenances et réseau scientifique.',
+          tdCount: 2,
+          examCount: 2,
+          correction: 'free',
         },
       ],
     },

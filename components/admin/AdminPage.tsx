@@ -79,11 +79,9 @@ function baseDocs(): BaseDoc[] {
   for (const lvl of [MSP1, MSP2]) {
     for (const sem of lvl.semesters) {
       for (const u of sem.units) {
-        for (const s of u.subjects) {
-          out.push({ id: `${s.id}:td`, level: lvl.code, semester: sem.name, unit: u.name, subject: s.name, type: 'TD', state: 'free', count: s.tdCount });
-          out.push({ id: `${s.id}:exam`, level: lvl.code, semester: sem.name, unit: u.name, subject: s.name, type: 'Examen', state: 'free', count: s.examCount });
-          out.push({ id: `${s.id}:corr`, level: lvl.code, semester: sem.name, unit: u.name, subject: s.name, type: 'Correction', state: s.correction });
-        }
+        out.push({ id: `${u.id}:td`, level: lvl.code, semester: sem.name, unit: u.name, subject: u.name, type: 'TD', state: 'free', count: u.tdCount });
+        out.push({ id: `${u.id}:exam`, level: lvl.code, semester: sem.name, unit: u.name, subject: u.name, type: 'Examen', state: 'free', count: u.examCount });
+        out.push({ id: `${u.id}:corr`, level: lvl.code, semester: sem.name, unit: u.name, subject: u.name, type: 'Correction', state: u.correction });
       }
     }
   }

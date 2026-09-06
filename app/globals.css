@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-grotesk: 'Space Grotesk Variable', 'Space Grotesk', sans-serif;
+  --font-inter: 'Inter Variable', 'Inter', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-navy-900 antialiased dark:bg-navy-950 dark:text-slate-200;
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+}
+
+::selection {
+  @apply bg-gold-500/30 text-navy-950 dark:text-gold-100;
+}
+
+/* ── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-navy-50 dark:bg-navy-950;
+}
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-navy-300 dark:bg-navy-700;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gold-500 dark:bg-gold-600;
+}
+
+/* ── Typography helpers ────────────────────────────── */
+.font-display {
+  font-family: var(--font-grotesk);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(115deg, #f5a524 0%, #ffd285 40%, #f5a524 65%, #d18a0f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-navy {
+  background: linear-gradient(120deg, #0b1b45 0%, #1b3a80 55%, #2450a8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dark .text-gradient-navy-on-dark {
+  background: linear-gradient(120deg, #ffffff 0%, #a8bfe9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Surfaces ──────────────────────────────────────── */
+.glass {
+  @apply bg-white/75 backdrop-blur-xl dark:bg-navy-900/65;
+}
+
+.card-premium {
+  @apply rounded-2xl border border-navy-900/10 bg-white/85 shadow-[0_10px_40px_rgba(3,8,24,0.07)] backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.04] dark:shadow-[0_10px_50px_rgba(0,0,0,0.4)];
+}
+
+.card-hover {
+  @apply transition-all duration-300 hover:-translate-y-1.5 hover:border-gold-500/50 hover:shadow-[0_18px_60px_rgba(245,165,36,0.16)] dark:hover:border-gold-500/40;
+}
+
+/* ── Buttons ───────────────────────────────────────── */
+.btn-gold {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-gold-400 via-gold-500 to-gold-600 px-5 py-3 text-sm font-semibold text-navy-950 shadow-[0_8px_28px_rgba(245,165,36,0.35)] transition-all duration-300 hover:shadow-[0_10px_36px_rgba(245,165,36,0.5)] hover:brightness-105 active:scale-[0.98];
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl border border-navy-900/20 bg-white/50 px-5 py-3 text-sm font-semibold text-navy-800 backdrop-blur transition-all duration-300 hover:border-gold-500/60 hover:text-navy-950 hover:shadow-[0_8px_28px_rgba(245,165,36,0.18)] active:scale-[0.98] dark:border-white/20 dark:bg-white/[0.04] dark:text-slate-100 dark:hover:border-gold-500/50 dark:hover:text-gold-200;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-navy-700 transition-colors hover:bg-navy-900/5 dark:text-slate-300 dark:hover:bg-white/5;
+}
+
+/* ── Forms ─────────────────────────────────────────── */
+.input-premium {
+  @apply w-full rounded-xl border border-navy-900/15 bg-white/70 px-4 py-3 text-sm text-navy-900 outline-none transition placeholder:text-navy-400 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/25 dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-gold-500;
+}
+
+.field-label {
+  @apply mb-1.5 block text-xs font-semibold uppercase tracking-[0.14em] text-navy-500 dark:text-slate-400;
+}
+
+/* ── Badges ────────────────────────────────────────── */
+.badge-gold {
+  @apply inline-flex items-center gap-1.5 rounded-full border border-gold-500/40 bg-gold-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-gold-700 dark:text-gold-300;
+}
+
+.badge-navy {
+  @apply inline-flex items-center gap-1.5 rounded-full border border-navy-300/40 bg-navy-500/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-navy-600 dark:border-navy-500/40 dark:bg-navy-800/60 dark:text-navy-200;
+}
+
+/* ── Backgrounds ───────────────────────────────────── */
+.bg-grid {
+  background-image: linear-gradient(to right, rgba(27, 58, 128, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(27, 58, 128, 0.07) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+.dark .bg-grid {
+  background-image: linear-gradient(to right, rgba(168, 191, 233, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(168, 191, 233, 0.06) 1px, transparent 1px);
+}
+
+.bg-radial-glow {
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(245, 165, 36, 0.13) 0%, transparent 70%);
+}
+.dark .bg-radial-glow {
+  background: radial-gradient(ellipse 70% 55% at 50% 0%, rgba(245, 165, 36, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(36, 80, 168, 0.18) 0%, transparent 70%);
+}
+
+/* ── 3D hologram wordmark ──────────────────────────── */
+.holo-word {
+  position: relative;
+  filter: drop-shadow(0 0 30px rgba(245, 165, 36, 0.3));
+}
+.holo-word::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(245, 165, 36, 0.16) 50%, transparent 70%);
+  background-size: 100% 300%;
+  animation: holo-scan 4.5s linear infinite;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+@keyframes holo-scan {
+  0% { background-position: 0 -150%; }
+  100% { background-position: 0 150%; }
+}
+
+.text-3d-navy {
+  text-shadow: 0 1px 0 rgba(11, 27, 69, 0.25), 0 2px 0 rgba(11, 27, 69, 0.18),
+    0 3px 0 rgba(11, 27, 69, 0.12), 0 12px 28px rgba(3, 8, 24, 0.25);
+}
+.dark .text-3d-navy {
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5), 0 3px 1px rgba(0, 0, 0, 0.3),
+    0 18px 44px rgba(0, 0, 0, 0.55);
+}
+
+/* ── Circuits ──────────────────────────────────────── */
+.circuit path {
+  stroke-dasharray: 5 9;
+  animation: circuit-flow 2.4s linear infinite;
+}
+.circuit .circuit-node {
+  animation: pulse-glow 2.4s ease-in-out infinite;
+}
+
+/* ── Shimmer line ──────────────────────────────────── */
+.shimmer-line {
+  background: linear-gradient(90deg, transparent, rgba(245, 165, 36, 0.7), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2.8s linear infinite;
+}
+
+/* ── Misc ──────────────────────────────────────────── */
+.gold-ring {
+  @apply ring-1 ring-gold-500/30;
+}
+
+.section-pad {
+  @apply py-20 md:py-28;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

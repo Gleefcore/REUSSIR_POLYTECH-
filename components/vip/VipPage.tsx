@@ -1,5 +1,6 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import Reveal from '@/components/ui/Reveal';
@@ -7,7 +8,10 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import TiltCard from '@/components/ui/TiltCard';
 import Icon from '@/components/ui/Icon';
 import Formulas from '@/components/ui/Formulas';
-import HeroScene from '@/components/hero/HeroScene';
+const HeroScene = dynamic(() => import('@/components/hero/HeroScene'), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0" aria-hidden />,
+});
 import { VIP_FORMATIONS, type VipFormation } from '@/lib/data/vip';
 import { addRequest, getSession } from '@/lib/auth';
 import { vipAccessMessage, waLink, WHATSAPP_DISPLAY } from '@/lib/whatsapp';

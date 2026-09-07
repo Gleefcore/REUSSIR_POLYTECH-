@@ -1,8 +1,14 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import HeroScene from '@/components/hero/HeroScene';
+// La scène 3D (Three.js) est chargée en asynchrone : le texte du hero
+// s'affiche immédiatement, le hologramme arrive juste après.
+const HeroScene = dynamic(() => import('@/components/hero/HeroScene'), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0" aria-hidden />,
+});
 import RobotBridge from '@/components/hero/RobotBridge';
 import Marquee from '@/components/ui/Marquee';
 import Reveal from '@/components/ui/Reveal';

@@ -8,6 +8,7 @@ import Footer from '@/components/layout/Footer';
 import WhatsAppFab from '@/components/layout/WhatsAppFab';
 import PageTransition from '@/components/layout/PageTransition';
 import ScrollProgress from '@/components/ui/ScrollProgress';
+import RoutePrefetcher from '@/components/layout/RoutePrefetcher';
 
 export const metadata: Metadata = {
   title: {
